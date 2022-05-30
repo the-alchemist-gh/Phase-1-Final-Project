@@ -69,6 +69,16 @@ body{
   margin: 20px 60px;
 }
 
+.card-top-header{
+  height: 300px;
+}
+
+.item-image{
+  height: 100%;
+  object-fit: cover;
+  background-color: #f2f2f2;
+}
+
 .card-body-header{
   display: flex;
   justify-content: space-between;
