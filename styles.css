@@ -49,6 +49,7 @@ body{
   border-radius: 5px;
   font-weight: 700;
   cursor: pointer;
+  display: flex;
 }
 
 .item-filter:hover{
@@ -67,6 +68,10 @@ body{
 
 #item-section{
   margin: 20px 60px;
+}
+
+.card{
+  border: none;
 }
 
 .card-top-header{
@@ -92,6 +97,7 @@ body{
     list-style: none;
     padding: 0;
     margin: 2px 0;
+    align-items: center;
 }
 
 .item-need-list{

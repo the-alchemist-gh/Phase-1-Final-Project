@@ -1,22 +1,24 @@
 {
-  "swaps":[
+  "swaps": [
     {
       "id": 1,
       "name": "Electric Bicycle",
-      "category":"Electronics",
+      "category": "Electronics",
       "description": "I bought this few months ago for my late son. I don't need it anymore",
       "image_url": "https://res.cloudinary.com/malikbanks/image/upload/v1653926520/swap-images/hipster-bicycle-morning-sunrise-by-sea.jpg",
       "likes": 4,
       "views": 23,
       "needs": [
-        "PS4","Book","Scooter"
+        "PS4",
+        "Book",
+        "Scooter"
       ],
       "date_published": "2018-12-10T13:49:51.141Z"
     },
     {
       "id": 2,
       "name": "The Alchemist",
-      "category":"Books",
+      "category": "Books",
       "description": "A lovely book this is. I would love to swap with another self-help book",
       "image_url": "https://res.cloudinary.com/malikbanks/image/upload/v1653935411/swap-images/080666f8867c1a01dc14decabe5417fc.jpg",
       "likes": 39,
@@ -29,16 +31,30 @@
     {
       "id": 3,
       "name": "iPhone 6",
-      "category":"Electronics",
+      "category": "Electronics",
       "description": "",
       "image_url": "https://res.cloudinary.com/malikbanks/image/upload/v1653935410/swap-images/jonny-caspari-28p5zbT8vew-unsplash.jpg",
       "likes": 2,
       "views": 0,
       "needs": [
-        "Book","Any Item","iPhone"
+        "Book",
+        "Any Item",
+        "iPhone"
       ],
       "date_published": "2021-12-10T13:49:51.141Z"
+    },
+    {
+      "name": "Yeezy Boost",
+      "category": "Select the item category",
+      "description": "",
+      "image_url": "",
+      "likes": 0,
+      "views": 0,
+      "needs": [
+        ""
+      ],
+      "date_published": "2022-05-31T09:23:36.599Z",
+      "id": 4
     }
-    
   ]
 }
