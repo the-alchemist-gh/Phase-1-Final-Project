@@ -106,8 +106,19 @@ function showDataOnPage(input){
 
 
 // Add likes count to database
-function addLikeCounterToDb(){
-  
+function addLikeCounterToDb(likeData){
+  fetch(`http://localhost:3000/swaps/${likeData.id}`, {
+    method:"PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(
+      likeData
+    ),
+  })
+  .then(response=>response.json())
+  .then(data=>console.log(data))
 }
 
 // Apply needs to card
