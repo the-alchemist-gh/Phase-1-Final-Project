@@ -1,70 +1,51 @@
-document.addEventListener('DOMContentLoaded', function(){
  // event for add btn clicked
 let addBtn = document.getElementById('add-new-item-btn');
-addBtn.addEventListener('click', addBtnClicked);
+addBtn.addEventListener('click',function(e){
+  e.preventDefault()
+  let addItemName = document.getElementById('addItemName').value;
+  let addItemCategory = document.getElementById('addItemCategory').value;
+  let addItemDesc = document.getElementById('addItemDesc').value;
+  let addItemNeed = document.getElementById('addItemNeed').value;
+  let addItemImage = document.getElementById('addItemImage').value;
+
+
+
+  // form data
+  const allFormData = {
+    name: addItemName,
+    category:addItemCategory,
+    description: addItemDesc,
+    image_url: addItemImage,
+    likes: 0,
+    views:0,
+    needs: addItemNeed.split(','),
+    date_published: new Date
+  };
+
+
+  postFormToDb(allFormData);
+
 });
 
+// function to validate form
+// function formValidation(){
+//   if(document.getElementById('addItemName').value === '')
+// }
+
 // click category to filter
-let categoryBtn = document.querySelectorAll(".item-filter");
-categoryBtn.forEach(catBtn => catBtn.addEventListener('click',filterBtnClicked))
+// let categoryBtn = document.querySelectorAll(".item-filter");
+// categoryBtn.forEach(catBtn => catBtn.addEventListener('click',filterBtnClicked))
 // categoryBtn.addEventListener('click',alert("Hello")); 
 
-function filterBtnClicked(e){
-  // e.preventDefault();
+// function filterBtnClicked(e){
+//   // e.preventDefault();
 
-  let clickedCategory = e.target.textContent;
-  console.log(e.target.textContent);
+//   let clickedCategory = e.target.textContent;
+//   console.log(e.target.textContent);
   
-}
+// }
 
 
-
-// let addName = document.getElementById('addItemName');
-  // let addItemCategory = document.getElementById('addItemCategory');
-  // let addItemDesc = document.getElementById('addItemDesc');
-  // let addItemType = document.getElementById('addItemType');
-  // let addItemNeed = document.getElementById('addItemNeed');
-  // let addItemImage = document.getElementById('addItemImage');
-
-// What to do when add btn is clicked
-function addBtnClicked(e){
-  e.preventDefault();
-  postFormToDb();
-}
-console.log(new Date);
-
-// form data
-const allFormData = {
-  name: document.getElementById('addItemName').value,
-  category:document.getElementById('addItemCategory').value,
-  description: document.getElementById('addItemDesc').value,
-  image_url: document.getElementById('addItemImage').value,
-  likes: 0,
-  views:0,
-  needs: document.getElementById('addItemNeed').value.split(','),
-  date_published: new Date
-};
-
-// post data object
-const postAllData = {
-  method:"POST",
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-  },
-  body: JSON.stringify(
-    {
-      name: document.getElementById('addItemName').value,
-      category:document.getElementById('addItemCategory').value,
-      description: document.getElementById('addItemDesc').value,
-      image_url: document.getElementById('addItemImage').value,
-      likes: 0,
-      views:0,
-      needs: document.getElementById('addItemNeed').value.split(','),
-      date_published: new Date
-    }
-  ),
-}
 
 // render data on page
 function showDataOnPage(input){
@@ -82,9 +63,9 @@ function showDataOnPage(input){
                 <div class="card-dark-layer">
                   <small class="m-2">
                   ${inputType}</small>
-                  <div class="card-like-btn m-2">
+                  <div class="card-like-btn m-2" id="like-counter">
                     <i class="fa-regular fa-heart"></i>
-                    ${input.likes}
+                    <span>${input.likes}</span>
                   </div>
                 </div>
                 <img src="${input.image_url}" class="card-img-top item-image" alt="...">
@@ -109,9 +90,24 @@ function showDataOnPage(input){
                 </div>
               </div>
             </div>
-  ` 
+  ` ;
+
+  product.querySelector("#like-counter").addEventListener('click',()=>{
+    input.likes++;
+    product.querySelector("#like-counter i").classList="fa-solid fa-heart"
+    product.querySelector("#like-counter i").style.color = "red";
+    product.querySelector('span').textContent = input.likes;
+    addLikeCounterToDb(input);
+  })
+
   productList.appendChild(product);
   applyNeeds(input);  
+}
+
+
+// Add likes count to database
+function addLikeCounterToDb(){
+  
 }
 
 // Apply needs to card
@@ -146,9 +142,19 @@ function getAllData(){
 }
 
 // Post all data
-function postFormToDb(){
-  fetch('http://localhost:3000/swaps', postAllData)
-  .then(response=>console.log(response.json()))
+  function postFormToDb(allFormData){
+  fetch('http://localhost:3000/swaps', {
+    method:"POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(
+      allFormData
+    ),
+  })
+  .then(response=>response.json())
+  .then(data=>console.log(data))
 }
 
 getAllData();

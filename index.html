@@ -101,6 +101,14 @@
           <label for="addItemDesc" class="form-label">Item Description</label>
           <textarea class="form-control" id="addItemDesc" rows="3" placeholder="Eg: This item is very new but I really don't need it anymore"></textarea>
         </div>
+        <div class="mb-3">
+          <label for="addItemType" class="form-label">Do you want to swap item or give away?</label>
+          <select class="form-select"  id="addItemType" aria-label="Default select example">
+            <option selected>Swap/Give</option>
+            <option value="Swap">Swap</option>
+            <option value="Free">Give</option>
+          </select>
+        </div>
         <div class="mb-3" id="item-need-input-field">
           <label for="addItemNeed" class="form-label">What do you want for this item?</label>
           <textarea class="form-control" id="addItemNeed" rows="2" placeholder="Eg: Book,PS4,Bike,Phone,Any Item"></textarea>

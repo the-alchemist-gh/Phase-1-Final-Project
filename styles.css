@@ -40,6 +40,7 @@ body{
   display: flex;
   list-style: none;
   margin: 20px 30px 10px;
+  overflow: overlay;
 }
 
 .item-filter{
@@ -67,7 +68,7 @@ body{
 }
 
 #item-section{
-  margin: 20px 60px;
+  margin: 20px 30px;
 }
 
 .card{
@@ -98,6 +99,7 @@ body{
     padding: 0;
     margin: 2px 0;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .item-need-list{

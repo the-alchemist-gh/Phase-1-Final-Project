@@ -44,17 +44,33 @@
       "date_published": "2021-12-10T13:49:51.141Z"
     },
     {
-      "name": "Yeezy Boost",
-      "category": "Select the item category",
-      "description": "",
-      "image_url": "",
+      "name": "Yeezy Boost 700",
+      "category": "Clothing",
+      "description": "Neww Item brand new",
+      "image_url": "https://www.modern-notoriety.com/wp-content/uploads/2022/02/adidas-yeezy-boost-700-wave-runner-B75571-2022-restock.jpg",
       "likes": 0,
       "views": 0,
       "needs": [
-        ""
+        "Sneaker",
+        " pc",
+        " phone",
+        " book"
       ],
-      "date_published": "2022-05-31T09:23:36.599Z",
+      "date_published": "2022-05-31T16:16:44.041Z",
       "id": 4
+    },
+    {
+      "name": "Coffee Table",
+      "category": "Home",
+      "description": "A very neat coffee table used for 2 months",
+      "image_url": "https://www.homestratosphere.com/wp-content/uploads/2014/11/woodtable-870x450.jpg.webp",
+      "likes": 0,
+      "views": 0,
+      "needs": [
+        "Want nothing in return."
+      ],
+      "date_published": "2022-06-21T14:31:34.741Z",
+      "id": 5
     }
   ]
 }
