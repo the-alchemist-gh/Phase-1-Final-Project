@@ -72,7 +72,79 @@
       </div>
     </div>
   </section>
-  
+<!-- Modal for view item -->
+<div class="modal fade" id="viewItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" id="modal-get-id">
+    <div class="modal-content">
+      <div>
+        <div class="modal-header d-block p-0">
+          <div class="pt-2 pe-2 text-end">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="p-3" id="modal-top">
+            <h4 class="modal-title" id="viewModalTitle"></h4>
+            <button type="button" class="btn btn-info"><i class="fa-solid fa-pen-to-square"> </i> Edit Item</button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid p-0">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="modal-image">
+                  <img class="modal-item-image" src="https://res.cloudinary.com/malikbanks/image/upload/v1653935410/swap-images/jonny-caspari-28p5zbT8vew-unsplash.jpg" alt="">
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="modal-text-section">
+                  <div class="modal-desc">
+                    <small><i class="mb-3 fa-solid fa-eye"></i>
+                      89 views</small>
+                    <h6 class="modal-item-desc">Thia is justa description, this is just a desc,. lorem ipsum test is description</h6>
+                  </div>
+                  <div class="modal-need mt-5">
+                    <h6>What I need for this item:</h6>
+                    <ul class="modal-item-needs">
+                      <li class="modal-item-need-list">first list</li>
+                      <li class="modal-item-need-list">first list</li>
+                      <li class="modal-item-need-list">first list</li>
+                    </ul>
+                  </div>
+                  <div class="modal-button">
+                    <div class="card-body-button">
+                      <a href="#" class="btn btn-swap"><i class="fa fa-arrow-right-arrow-left"></i> Make an Offer</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="accordion mt-3" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <h6 class="m-0">View Offers</h6>
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body p-0">
+                      <ul class="offer-group p-0">
+                        <li class="offers-list p-2 m-2">offer1</li>
+                        <li class="offers-list p-2 m-2">offer2</li>
+                        <li class="offers-list p-2 m-2">offer3</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
 
   <!-- Add Item Form  -->
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
