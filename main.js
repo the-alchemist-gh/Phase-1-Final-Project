@@ -121,6 +121,8 @@ function showDataOnPage(input){
                     <div class="col-md-5">
                       <div class="modal-text-section">
                         <div class="modal-desc">
+                          <small>Category: 
+                          ${input.category}</small> <br>
                           <small><i class="mb-3 fa-solid fa-eye"></i>
                           ${input.views} views</small>
                           <h6 class="modal-item-desc">${input.description}</h6>
