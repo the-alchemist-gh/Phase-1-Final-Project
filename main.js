@@ -7,7 +7,9 @@ addBtn.addEventListener('click',function(e){
   let addItemDesc = document.getElementById('addItemDesc').value;
   let addItemNeed = document.getElementById('addItemNeed').value;
   let addItemImage = document.getElementById('addItemImage').value;
+  let addItemType = document.getElementById('addItemType').value;
 
+  console.log(addItemType);
 
 
   // form data
@@ -18,12 +20,15 @@ addBtn.addEventListener('click',function(e){
     image_url: addItemImage,
     likes: 0,
     views:0,
+    type:addItemType,
     needs: addItemNeed.split(','),
     date_published: new Date
   };
 
 
   postFormToDb(allFormData);
+  
+  
 
 });
 
@@ -106,7 +111,7 @@ function showDataOnPage(input){
                 </div>
                 <div class="p-3" id="modal-top">
                   <h4 class="modal-title" id="viewModalTitle">${input.name}</h4>
-                  <button type="button" class="btn btn-info"><i class="fa-solid fa-pen-to-square"> </i> Edit Item</button>
+                  <button type="button" class="btn btn-info" data-bs-target="#exampleModal" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-pen-to-square"> </i> Edit Item</button>
                 </div>
                 
               </div>
@@ -251,6 +256,7 @@ function getAllData(){
   .then(resp=>resp.json())
   .then(swapData=>swapData.forEach(data => {
     showDataOnPage(data)
+    console.log(data)
   })
   )
   // .then(viewItemInModal())
