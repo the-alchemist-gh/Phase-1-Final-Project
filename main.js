@@ -157,7 +157,7 @@ function showDataOnPage(input, inputOffers){
                 </div>
                 <div class="card-body-footer mt-2">
                   <ul class="item-needs">
-                    <span>Needs:</span>
+                    <span>Swap with:</span>
                     
                   </ul>
                 </div>
@@ -226,9 +226,9 @@ function showDataOnPage(input, inputOffers){
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                           <div class="accordion-body p-0">
                             <ul class="offer-group p-0">
-                              <li class="offers-list p-2 m-2">offer1</li>
-                              <li class="offers-list p-2 m-2">offer2</li>
-                              <li class="offers-list p-2 m-2">offer3</li>
+                              <li class="offers-list p-2 m-2">
+                                
+                              </li>
                             </ul>
                           </div>
                         </div>
@@ -240,6 +240,38 @@ function showDataOnPage(input, inputOffers){
             </div>
     `
     modalBox.innerHTML = '';
+
+    // Add Offers to Modal View
+    offerModalBox =  modalItem.querySelector('.offer-group');
+    
+    inputOffers.forEach((inputOffer1=>{
+      if(inputOffer1.offerFor === input.id){
+        offerModalItem = document.createElement('li');
+        offerModalItem.classList.add('offers-list', 'p-2', 'm-2')
+        offerModalItem.innerHTML =
+        `
+            <div class="row">
+              <div class="col-4">
+                <div class="offer-modal-image-container">
+                  <img class="offer-modal-item-image" src="${inputOffer1.offerImage}">
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="offer-modal-title">
+                  <h6>${inputOffer1.offerName}</h6>
+                  <div>
+                    <button class="btn-sm btn-danger"><i class="fa-solid fa-xmark"> </i> Decline</button>
+                    <button class="btn-sm btn-success"><i class="fa-solid fa-check"> </i> Accept</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        `
+        offerModalBox.appendChild(offerModalItem);
+      }
+    }))
+    
+
     modalBox.append(modalItem);
     applyNeedsForView(input.needs)
     editItem(input, product);
@@ -363,7 +395,7 @@ function addEditToDb(editedData, editedProduct){
       editedProduct.querySelector('.item-name').textContent = finalResult.name;
       // Add need edited need
       editedNeedUl = editedProduct.querySelector('.item-needs');
-      editedNeedUl.innerHTML = '<span>Needs222:</span>';
+      editedNeedUl.innerHTML = '<span>Needs:</span>';
       finalResult.needs.forEach(editedNeed=>{
         let editedNeedList = document.createElement('li');
         editedNeedList.classList.add('item-need-list');

@@ -103,6 +103,27 @@ body{
   background-color: #f2f2f2;
 }
 
+.offer-modal-image-container{
+  height: 200px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.offer-modal-title{
+  flex-direction: column;
+    display: inline-flex;
+    height: 95%;
+    justify-content: space-between;
+}
+.offer-modal-item-image{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
 .card-body-header{
   display: flex;
   justify-content: space-between;
@@ -112,9 +133,9 @@ body{
 }
 
 .card-body-name>small>span{
-  background-color: rgb(179, 255, 179);
-  color: green;
-  font-weight: 700;
+  background-color: rgb(213, 255, 213);
+  color: #167416;
+  font-weight: 500;
   border-radius: 10px;
 }
 
