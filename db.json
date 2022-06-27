@@ -7,7 +7,7 @@
       "description": "I bought this few months ago for my late son. I don't need it anymore",
       "image_url": "https://res.cloudinary.com/malikbanks/image/upload/v1653926520/swap-images/hipster-bicycle-morning-sunrise-by-sea.jpg",
       "likes": 8,
-      "views": 34,
+      "views": 38,
       "needs": [
         "PS4",
         "Book",
@@ -23,7 +23,7 @@
       "description": "A lovely book this is. I would love to swap with another self-help book",
       "image_url": "https://res.cloudinary.com/malikbanks/image/upload/v1653935411/swap-images/080666f8867c1a01dc14decabe5417fc.jpg",
       "likes": 42,
-      "views": 256,
+      "views": 260,
       "needs": [
         "Book"
       ],
@@ -32,63 +32,64 @@
     },
     {
       "id": 3,
-      "name": "iPhone 6",
+      "name": "iPhone 8",
       "category": "Electronics",
       "description": "",
       "image_url": "https://res.cloudinary.com/malikbanks/image/upload/v1653935410/swap-images/jonny-caspari-28p5zbT8vew-unsplash.jpg",
       "likes": 2,
-      "views": 19,
+      "views": 22,
       "needs": [
         "Book",
         "Any Item",
         "iPhone"
       ],
-      "type": "swap",
-      "date_published": "2021-12-10T13:49:51.141Z"
+      "type": "free",
+      "date_published": "2022-06-27T01:07:58.285Z"
     },
     {
-      "name": "Yeezy Boost 700",
+      "name": "Yeezy Boost 700vew",
       "category": "Clothing",
       "description": "Neww Item brand new",
       "image_url": "https://www.modern-notoriety.com/wp-content/uploads/2022/02/adidas-yeezy-boost-700-wave-runner-B75571-2022-restock.jpg",
       "likes": 4,
-      "views": 3,
+      "views": 5,
       "needs": [
         "Sneaker",
         " pc",
         " phone",
-        " book"
+        " book",
+        " nike"
       ],
       "type": "swap",
-      "date_published": "2022-05-31T16:16:44.041Z",
+      "date_published": "2022-06-27T00:31:46.270Z",
       "id": 4
     },
     {
-      "name": "Coffee Table",
+      "name": "Coffee Table large",
       "category": "Home",
       "description": "A very neat coffee table used for 2 months",
       "image_url": "https://www.homestratosphere.com/wp-content/uploads/2014/11/woodtable-870x450.jpg.webp",
       "likes": 3,
-      "views": 7,
+      "views": 9,
       "needs": [
         "Want nothing in return."
       ],
-      "type": "free",
-      "date_published": "2022-06-21T14:31:34.741Z",
+      "type": "swap",
+      "date_published": "2022-06-27T01:08:41.107Z",
       "id": 5
     },
     {
-      "name": "Chair",
+      "name": "Chair 223",
       "category": "Home",
-      "description": "Gotta let this one go",
+      "description": "Gotta let this one go hbnb",
       "image_url": "https://contents.mediadecathlon.com/p1749436/k$a2f3669101f906b354461ed9efd3ceee/extremely-comfortable-folding-camping-chair-reclinable-comfort.jpg?&f=800x800",
       "likes": 0,
-      "views": 0,
+      "views": 17,
       "type": "free",
       "needs": [
         "nothing"
       ],
-      "date_published": "2022-06-26T17:33:35.033Z",
+      "date_published": "2022-06-27T00:44:10.467Z",
       "id": 6
     }
   ]

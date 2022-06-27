@@ -9,8 +9,6 @@ addBtn.addEventListener('click',function(e){
   let addItemImage = document.getElementById('addItemImage').value;
   let addItemType = document.getElementById('addItemType').value;
 
-  console.log(addItemType);
-
 
   // form data
   const allFormData = {
@@ -32,23 +30,70 @@ addBtn.addEventListener('click',function(e){
 
 });
 
-// function to validate form
-// function formValidation(){
-//   if(document.getElementById('addItemName').value === '')
-// }
 
-// click category to filter
-// let categoryBtn = document.querySelectorAll(".item-filter");
-// categoryBtn.forEach(catBtn => catBtn.addEventListener('click',filterBtnClicked))
-// categoryBtn.addEventListener('click',alert("Hello")); 
+// Event to Edit item
+function editItem(itemToEdit, editProduct){
+  let editBtn = document.querySelector('#edit-item');
+  editBtn.addEventListener('click',()=>{
+    let modalEditBox = document.getElementById('modal-edit-id');
+    let modalEditItem = document.createElement('div'); 
+    modalEditItem.innerHTML=
+    `
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Item</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="editItemName" class="form-label">Name of Item</label>
+                    <input type="text" value="${itemToEdit.name}" class="form-control" id="editItemName" aria-describedby="nameHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="editItemCategory" class="form-label">Category</label>
+                    <select class="form-select"  id="editItemCategory" aria-label="Default select example">
+                      <option value="${itemToEdit.category}" selected>${itemToEdit.category}</option>
+                      <option value="Clothing">Clothing</option>
+                      <option value="Electronics">Electronics</option>
+                      <option value="Home">Home</option>
+                      <option value="Books">Books</option>
+                      <option value="Services">Services</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="editItemDesc" class="form-label">Item Description</label>
+                    <textarea class="form-control" id="editItemDesc" rows="3" placeholder="Eg: This item is very new but I really don't need it anymore">${itemToEdit.description}</textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="editItemType" class="form-label">Do you want to swap item or give away?</label>
+                    <select class="form-select"  id="editItemType" aria-label="Default select example">
+                      <option value="${itemToEdit.type}" selected>${itemToEdit.type}</option>
+                      <option value="swap">Swap</option>
+                      <option value="free">Give</option>
+                    </select>
+                  </div>
+                  <div class="mb-3" id="edit-item-need-input-field">
+                    <label for="editItemNeed" class="form-label">What do you want for this item?</label>
+                    <textarea class="form-control" value="${itemToEdit.needs}" id="editItemNeed" rows="2" placeholder="Eg: Book,PS4,Bike,Phone,Any Item">${itemToEdit.needs}</textarea>
+                    <div id="editNeedHelp" class="form-text">Enter Items separated by ",". Eg. Book,Lamp,Watch</div>
+                  </div> 
+                  <div class="mb-3">
+                    <label for="editItemImage" class="form-label">Item Image Url</label>
+                    <input type="text" class="form-control" value="${itemToEdit.image_url}" id="editItemImage" aria-describedby="imageHelp">
+                    <div id="editImageHelp" class="form-text">Enter the full url to the image of the item.</div>
+                  </div>
+                  <button type="submit" class="btn btn-dark" id="edit-new-item-btn">Edit Item Now</button>
+                </form>
+              </div>
+            </div>
+    `;
+    modalEditBox.innerHTML = '';
+    modalEditBox.append(modalEditItem);
+    addEditToDb(itemToEdit, editProduct);
+  })
+}
 
-// function filterBtnClicked(e){
-//   // e.preventDefault();
-
-//   let clickedCategory = e.target.textContent;
-//   console.log(e.target.textContent);
-  
-// }
 
 
 
@@ -97,13 +142,14 @@ function showDataOnPage(input){
   ` ;
 // view product
   product.querySelector('.item-name').addEventListener('click', (e)=>{
-    console.log(input.id)
+    // console.log(input.id)
     input.views++;
     product.querySelector('.card-body-name small span').textContent = input.views;
     addViewToDb(input);
     let modalBox = document.getElementById('modal-get-id');
     let modalItem = document.createElement('div'); 
-    modalItem.innerHTML = `
+    modalItem.innerHTML = 
+          `
             <div class="modal-content">
               <div class="modal-header d-block p-0">
                 <div class="pt-2 pe-2 text-end">
@@ -111,7 +157,7 @@ function showDataOnPage(input){
                 </div>
                 <div class="p-3" id="modal-top">
                   <h4 class="modal-title" id="viewModalTitle">${input.name}</h4>
-                  <button type="button" class="btn btn-info" data-bs-target="#exampleModal" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-pen-to-square"> </i> Edit Item</button>
+                  <button type="button" class="btn btn-info" id="edit-item" data-bs-target="#editModal" data-bs-toggle="modal" data-bs-dismiss="modal"><i class="fa-solid fa-pen-to-square"> </i> Edit Item</button>
                 </div>
                 
               </div>
@@ -174,6 +220,8 @@ function showDataOnPage(input){
     `
     modalBox.innerHTML = '';
     modalBox.append(modalItem);
+    editItem(input, product);
+
   })
 
   // like an item
@@ -187,6 +235,7 @@ function showDataOnPage(input){
 
   productList.appendChild(product);
   applyNeeds(input); 
+
   
 }
 
@@ -214,6 +263,66 @@ function addLikeCounterToDb(likeData){
   // .then(data=>console.log(data))
 }
 
+// Add Edit to database
+function addEditToDb(editedData, editedProduct){
+  
+  let addEditBtn=document.querySelector('#edit-new-item-btn');
+  addEditBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    console.log(editedData)
+    let editItemName = document.getElementById('editItemName').value;
+    let editItemCategory = document.getElementById('editItemCategory').value;
+    let editItemDesc = document.getElementById('editItemDesc').value;
+    let editItemNeed = document.getElementById('editItemNeed').value;
+    let editItemImage = document.getElementById('editItemImage').value;
+    let editItemType = document.getElementById('editItemType').value;
+    
+
+
+    // form data
+    const allEditedData = {
+      name: editItemName,
+      category:editItemCategory,
+      description: editItemDesc,
+      image_url: editItemImage,
+      likes: editedData.likes,
+      views:editedData.views,
+      type:editItemType,
+      needs: editItemNeed.split(','),
+      date_published: new Date
+    };
+
+    console.log(allEditedData);
+
+    fetch(`http://localhost:3000/swaps/${editedData.id}`, {
+        method:"PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(
+          allEditedData
+        ),
+      })
+    .then(response=>response.json())
+    .then(finalResult=>{
+      let inputType2 = ``;
+      if(finalResult.type ==="free"){
+        inputType2 =`<span class="btn btn-success btn-sm">Free</span>`;
+      };
+      editedProduct.querySelector('.card-dark-layer').innerHTML = inputType2;
+      editedProduct.querySelector('.item-image').src = finalResult.image_url;
+      editedProduct.querySelector('.item-name').textContent = finalResult.name;
+      console.log(editedProduct);
+    })
+
+
+
+  })
+  
+}
+
+// Add View to DB
 function addViewToDb(viewData){
   fetch(`http://localhost:3000/swaps/${viewData.id}`, {
     method:"PATCH",
@@ -256,7 +365,7 @@ function getAllData(){
   .then(resp=>resp.json())
   .then(swapData=>swapData.forEach(data => {
     showDataOnPage(data)
-    console.log(data)
+    // console.log(data)
   })
   )
   // .then(viewItemInModal())

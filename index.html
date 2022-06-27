@@ -73,60 +73,9 @@
     </div>
   </section>
   <!-- Modal for edit item -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="editItemName" class="form-label">Name of Item</label>
-              <input type="text" class="form-control" id="editItemName" aria-describedby="nameHelp">
-            </div>
-            <div class="mb-3">
-              <label for="editItemCategory" class="form-label">Category</label>
-              <select class="form-select"  id="editItemCategory" aria-label="Default select example">
-                <option selected>Select the item category</option>
-                <option value="Clothing">Clothing</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Home">Home</option>
-                <option value="Books">Books</option>
-                <option value="Services">Services</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="editItemDesc" class="form-label">Item Description</label>
-              <textarea class="form-control" id="editItemDesc" rows="3" placeholder="Eg: This item is very new but I really don't need it anymore"></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="editItemType" class="form-label">Do you want to swap item or give away?</label>
-              <select class="form-select"  id="editItemType" aria-label="Default select example">
-                <option selected>Swap/Give</option>
-                <option value="swap">Swap</option>
-                <option value="free">Give</option>
-              </select>
-            </div>
-            <div class="mb-3" id="edit-item-need-input-field">
-              <label for="editItemNeed" class="form-label">What do you want for this item?</label>
-              <textarea class="form-control" id="editItemNeed" rows="2" placeholder="Eg: Book,PS4,Bike,Phone,Any Item"></textarea>
-              <div id="editNeedHelp" class="form-text">Enter Items separated by ",". Eg. Book,Lamp,Watch</div>
-            </div> 
-            <div class="mb-3">
-              <label for="editItemImage" class="form-label">Item Image Url</label>
-              <input type="text" class="form-control" id="editItemImage" aria-describedby="imageHelp">
-              <div id="editImageHelp" class="form-text">Enter the full url to the image of the item.</div>
-            </div>
-            <button type="submit" class="btn btn-dark" id="edit-new-item-btn">Edit Item Now</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Send message</button>
-        </div>
-      </div>
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="modal-edit-id">
+      
     </div>
   </div>
 <!-- Modal for view item -->
