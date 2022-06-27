@@ -202,14 +202,16 @@ function showDataOnPage(input, inputOffers){
                           ${input.views} views</small>
                           <h6 class="modal-item-desc">${input.description}</h6>
                         </div>
-                        <div class="modal-need mt-5">
-                          <h6>What I need for this item:</h6>
-                          <ul class="modal-item-needs">
-                          </ul>
-                        </div>
-                        <div class="modal-button">
-                          <div class="card-body-button">
-                            <a href="#" class="btn btn-swap"><i class="fa fa-arrow-right-arrow-left"></i> Make an Offer</a>
+                        <div>
+                          <div class="modal-need mt-5">
+                            <h6>What I need for this item:</h6>
+                            <ul class="modal-item-needs">
+                            </ul>
+                          </div>
+                          <div class="modal-button">
+                            <div class="card-body-button">
+                              <a href="#" class="btn btn-swap" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#offerModal"><i class="fa fa-arrow-right-arrow-left"></i> Make an Offer</a>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -226,9 +228,7 @@ function showDataOnPage(input, inputOffers){
                         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                           <div class="accordion-body p-0">
                             <ul class="offer-group p-0">
-                              <li class="offers-list p-2 m-2">
-                                
-                              </li>
+                            
                             </ul>
                           </div>
                         </div>
@@ -243,12 +243,23 @@ function showDataOnPage(input, inputOffers){
 
     // Add Offers to Modal View
     offerModalBox =  modalItem.querySelector('.offer-group');
-    
+    offerModalItem = document.createElement('div');
+        offerModalItem.innerHTML = `
+          <div class="text-center">
+            <h1 class="text-danger">No Offers Yet</h1>
+            <div>
+              <img class="w-25" src="./img/404.gif">
+            </div>
+            <button class="btn btn-swap" id="offer-btn" data-bs-toggle="modal" data-bs-target="#offerModal" data-bs-dismiss="modal"><i class="fa fa-arrow-right-arrow-left"></i> Make an Offer Now</button>
+          </div>
+        `
+    offerModalBox.appendChild(offerModalItem);
     inputOffers.forEach((inputOffer1=>{
       if(inputOffer1.offerFor === input.id){
-        offerModalItem = document.createElement('li');
-        offerModalItem.classList.add('offers-list', 'p-2', 'm-2')
-        offerModalItem.innerHTML =
+        offerModalItem.remove();
+        offerModalItem1 = document.createElement('li');
+        offerModalItem1.classList.add('offers-list', 'p-2', 'm-2');
+        offerModalItem1.innerHTML =
         `
             <div class="row">
               <div class="col-4">
@@ -267,7 +278,7 @@ function showDataOnPage(input, inputOffers){
               </div>
             </div>
         `
-        offerModalBox.appendChild(offerModalItem);
+        offerModalBox.appendChild(offerModalItem1);
       }
     }))
     

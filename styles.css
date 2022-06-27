@@ -103,6 +103,13 @@ body{
   background-color: #f2f2f2;
 }
 
+.modal-text-section{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .offer-modal-image-container{
   height: 200px;
   background-color: #f2f2f2;
