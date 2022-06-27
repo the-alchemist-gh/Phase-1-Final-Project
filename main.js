@@ -133,7 +133,7 @@ function showDataOnPage(input){
                 </div>
                 <div class="card-body-footer mt-2">
                   <ul class="item-needs">
-                    Needs:
+                    <span>Needs:</span>
                     
                   </ul>
                 </div>
@@ -181,9 +181,6 @@ function showDataOnPage(input){
                         <div class="modal-need mt-5">
                           <h6>What I need for this item:</h6>
                           <ul class="modal-item-needs">
-                            <li class="modal-item-need-list">first list</li>
-                            <li class="modal-item-need-list">first list</li>
-                            <li class="modal-item-need-list">first list</li>
                           </ul>
                         </div>
                         <div class="modal-button">
@@ -220,6 +217,7 @@ function showDataOnPage(input){
     `
     modalBox.innerHTML = '';
     modalBox.append(modalItem);
+    applyNeedsForView(input.needs)
     editItem(input, product);
 
   })
@@ -234,7 +232,7 @@ function showDataOnPage(input){
   })
 
   productList.appendChild(product);
-  applyNeeds(input); 
+  applyNeeds(input.needs); 
 
   
 }
@@ -313,7 +311,15 @@ function addEditToDb(editedData, editedProduct){
       editedProduct.querySelector('.card-dark-layer').innerHTML = inputType2;
       editedProduct.querySelector('.item-image').src = finalResult.image_url;
       editedProduct.querySelector('.item-name').textContent = finalResult.name;
-      console.log(editedProduct);
+      // Add need edited need
+      editedNeedUl = editedProduct.querySelector('.item-needs');
+      editedNeedUl.innerHTML = '<span>Needs222:</span>';
+      finalResult.needs.forEach(editedNeed=>{
+        let editedNeedList = document.createElement('li');
+        editedNeedList.classList.add('item-need-list');
+        editedNeedList.textContent = editedNeed;
+        editedNeedUl.appendChild(editedNeedList);
+      })
     })
 
 
@@ -340,7 +346,7 @@ function addViewToDb(viewData){
 
 // Apply needs to card
 function applyNeeds(dataForNeed){
-  dataForNeed.needs.forEach(itemNeed=>{
+  dataForNeed.forEach(itemNeed=>{
     let needList = document.createElement('li');
     let needLists = document.querySelectorAll('.item-needs');
     needList.classList.add('item-need-list');
@@ -352,8 +358,25 @@ function applyNeeds(dataForNeed){
 
       }
     )
-    // needLists.innerHTML=needList;
-    // needLists.appendChild(needList);
+  });
+  
+    
+}
+
+// Apply needs to view card
+function applyNeedsForView(viewNeed){
+  viewNeed.forEach(itemModalNeed=>{
+    let modalNeedList = document.createElement('li');
+    let modalNeedLists = document.querySelectorAll('.modal-item-needs');
+    modalNeedList.classList.add('modal-item-need-list');
+    // loop through needs section and add needs from database
+    modalNeedLists.forEach(
+      need2=>{
+        modalNeedList.textContent = itemModalNeed;
+        need2.appendChild(modalNeedList);
+
+      }
+    )
   });
   
     
