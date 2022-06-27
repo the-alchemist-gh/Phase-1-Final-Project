@@ -20,6 +20,7 @@ addBtn.addEventListener('click',function(e){
     views:0,
     type:addItemType,
     needs: addItemNeed.split(','),
+    offers:[],
     date_published: new Date
   };
 
@@ -98,7 +99,7 @@ function editItem(itemToEdit, editProduct){
 
 
 // render data on page
-function showDataOnPage(input){
+function showDataOnPage(input, inputOffers){
   let productList = document.getElementById('product-list');
   let product = document.createElement('div');
   product.classList.add('col-md-4','mb-4','mt-2'); 
@@ -106,6 +107,21 @@ function showDataOnPage(input){
   if(input.type ==="free"){
     inputType =`<span class="btn btn-success btn-sm">Free</span>`;
   };
+
+  // Offer Count on product
+  let offerCount;
+  let offerCounts = inputOffers.reduce((c, { offerFor: key }) => (c[key] = (c[key] || 0) + 1, c), {});
+  console.log(typeof offerCounts, offerCounts,input.id, offerCounts[input.id]);
+
+  if(isNaN(offerCounts[input.id])){
+    offerCount = ``;
+  } else if(offerCounts[input.id] === 1){
+    offerCount = `${offerCounts[input.id]} Offer`;
+  } else if(offerCounts[input.id] > 1){
+    offerCount = `${offerCounts[input.id]} Offers`;
+  }
+  
+  console.log(typeof inputOffers, inputOffers);
   product.innerHTML = 
   `
             <div class="card" style="width: 100%;">
@@ -113,10 +129,17 @@ function showDataOnPage(input){
                 <div class="card-dark-layer">
                   <small class="m-2">
                   ${inputType}</small>
-                  <div class="card-like-btn m-2 .like-countr" id="like-counter">
-                    <i class="fa-regular fa-heart"></i>
-                    <span>${input.likes}</span>
+                  <div>
+                    <div class="card-view-btn m-2 .like-countr">
+                      <i class="fa-regular fa-eye"></i>
+                      <span id="spanView">${input.views}</span>
+                    </div>
+                    <div class="card-like-btn m-2 .like-countr" id="like-counter">
+                      <i class="fa-regular fa-heart"></i>
+                      <span id="spanLike">${input.likes}</span>
+                    </div>
                   </div>
+                  
                 </div>
                 <img src="${input.image_url}" class="card-img-top item-image" alt="...">
               </div>
@@ -124,11 +147,11 @@ function showDataOnPage(input){
                 <div class="card-body-header">
                   <div class="card-body-name">
                     <h5 class="card-title item-name" data-bs-toggle="modal" data-bs-target="#viewItem">${input.name}</h5>
-                    <small><i class="fa-solid fa-eye"></i>
-                    <span>${input.views}</span> views</small>
+                    <small>
+                    <span>${offerCount}</span></small>
                   </div>
                   <div class="card-body-button">
-                    <a href="#" class="btn btn-swap"><i class="fa fa-arrow-right-arrow-left"></i> Make an Offer</a>
+                    <a class="btn btn-swap" id="offer-btn" data-bs-toggle="modal" data-bs-target="#offerModal"><i class="fa fa-arrow-right-arrow-left"></i> Make an Offer</a>
                   </div>
                 </div>
                 <div class="card-body-footer mt-2">
@@ -141,10 +164,10 @@ function showDataOnPage(input){
             </div>
   ` ;
 // view product
-  product.querySelector('.item-name').addEventListener('click', (e)=>{
+  product.querySelector('.item-name').addEventListener('click', ()=>{
     // console.log(input.id)
     input.views++;
-    product.querySelector('.card-body-name small span').textContent = input.views;
+    product.querySelector('#spanView').textContent = input.views;
     addViewToDb(input);
     let modalBox = document.getElementById('modal-get-id');
     let modalItem = document.createElement('div'); 
@@ -227,8 +250,36 @@ function showDataOnPage(input){
     input.likes++;
     product.querySelector("#like-counter i").classList="fa-solid fa-heart"
     product.querySelector("#like-counter i").style.color = "red";
-    product.querySelector('#like-counter span').textContent = input.likes;
+    product.querySelector('#spanLike').textContent = input.likes;
     addLikeCounterToDb(input);
+  })
+
+  // Offer button Clicked
+  product.querySelector('#offer-btn').addEventListener('click',()=>{
+    // let offerModalBox = document.getElementById('modal-offer-id');
+    // let offerModalItem = document.createElement('div'); 
+    // offerModalItem.innerHTML = `
+
+    // `
+
+    document.getElementById('offer-item-btn').addEventListener('click', (e)=>{
+      e.preventDefault();
+      let offerName = document.getElementById('offerItemName').value;
+      let offerDesc = document.getElementById('offerItemDesc').value;
+      let offerImage = document.getElementById('offerItemImage').value;
+      
+      const allOfferData = {
+        offerName: offerName,
+        offerDesc: offerDesc,
+        offerImage: offerImage,
+        offerFor: input.id,
+        offerDate: new Date
+      }
+
+      postOffersToDb(allOfferData);
+      
+    })
+
   })
 
   productList.appendChild(product);
@@ -289,8 +340,6 @@ function addEditToDb(editedData, editedProduct){
       needs: editItemNeed.split(','),
       date_published: new Date
     };
-
-    console.log(allEditedData);
 
     fetch(`http://localhost:3000/swaps/${editedData.id}`, {
         method:"PATCH",
@@ -387,10 +436,21 @@ function getAllData(){
   fetch("http://localhost:3000/swaps")
   .then(resp=>resp.json())
   .then(swapData=>swapData.forEach(data => {
-    showDataOnPage(data)
+
+    fetch("http://localhost:3000/offers")
+    .then(resp=>resp.json())
+    .then(oferData=>{
+      console.log(oferData.length)
+      console.log(oferData)
+      showDataOnPage(data, oferData)
+    
+    }
+    )
+    // showDataOnPage(data)
     // console.log(data)
   })
   )
+  
   // .then(viewItemInModal())
   // ;
 }
@@ -409,6 +469,22 @@ function getAllData(){
   })
   .then(response=>response.json())
   .then(data=>console.log(data))
+}
+
+// post All offers to DB
+function postOffersToDb(allOffersFormData){
+  fetch(`http://localhost:3000/offers`, {
+        method:"POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(
+          allOffersFormData
+        ),
+      })
+      .then(response=>response.json())
+      .then(results=>console.log(results))
 }
 
 getAllData();

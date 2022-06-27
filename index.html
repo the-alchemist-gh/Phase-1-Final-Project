@@ -72,6 +72,37 @@
       </div>
     </div>
   </section>
+  <!-- Modal for Make an Offer -->
+   <!-- Modal for edit item -->
+   <div class="modal fade" id="offerModal" tabindex="-1" aria-labelledby="offerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="modal-offer-id">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="offerModalLabel">Swap Item</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="offerItemName" class="form-label">Name of Item you want to offer</label>
+              <input type="text" class="form-control" id="offerItemName" aria-describedby="nameHelp">
+            </div>
+            <div class="mb-3">
+              <label for="offerItemDesc" class="form-label">Item Description</label>
+              <textarea class="form-control" id="offerItemDesc" rows="3" placeholder="Eg: This item is very new but I really don't need it anymore"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="offerItemImage" class="form-label">Item Image Url</label>
+              <input type="text" class="form-control" id="offerItemImage" aria-describedby="imageHelp">
+              <div id="editImageHelp" class="form-text">Enter the full url to the image of the item.</div>
+            </div>
+            <button type="submit" class="btn btn-dark" id="offer-item-btn">Edit Item Now</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal for edit item -->
   <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" id="modal-edit-id">
