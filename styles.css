@@ -111,6 +111,13 @@ body{
   border-bottom: solid 1px #d4d4d4;
 }
 
+.card-body-name>small>span{
+  background-color: rgb(179, 255, 179);
+  color: green;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
 .item-needs,.modal-item-needs{
     display: flex;
     list-style: none;

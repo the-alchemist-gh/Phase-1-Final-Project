@@ -116,9 +116,10 @@ function showDataOnPage(input, inputOffers){
   if(isNaN(offerCounts[input.id])){
     offerCount = ``;
   } else if(offerCounts[input.id] === 1){
-    offerCount = `${offerCounts[input.id]} Offer`;
+    offerCount = `<span class="py-1 px-2">${offerCounts[input.id]} Offer</span>`;
   } else if(offerCounts[input.id] > 1){
-    offerCount = `${offerCounts[input.id]} Offers`;
+    offerCount = `<span class="py-1 px-2">${offerCounts[input.id]} Offers</span>`;
+    console.log(offerCount)
   }
   
   console.log(typeof inputOffers, inputOffers);
@@ -148,7 +149,7 @@ function showDataOnPage(input, inputOffers){
                   <div class="card-body-name">
                     <h5 class="card-title item-name" data-bs-toggle="modal" data-bs-target="#viewItem">${input.name}</h5>
                     <small>
-                    <span>${offerCount}</span></small>
+                    ${offerCount}</small>
                   </div>
                   <div class="card-body-button">
                     <a class="btn btn-swap" id="offer-btn" data-bs-toggle="modal" data-bs-target="#offerModal"><i class="fa fa-arrow-right-arrow-left"></i> Make an Offer</a>
